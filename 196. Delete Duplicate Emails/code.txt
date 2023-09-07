@@ -1,0 +1,33 @@
+Question: 
+Table: Person
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains an email. The emails will not contain uppercase letters.
+ 
+
+Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+
+For SQL users, please note that you are supposed to write a DELETE statement and not a SELECT one.
+
+For Pandas users, please note that you are supposed to modify Person in place.
+
+After running your script, the answer shown is the Person table. The driver will first compile and run your piece of code and then show the Person table. The final order of the Person table does not matter.
+
+
+Concept: 
+The idea is to do a deletion by doing a query. This query will do a cross product between the same person relation. It will identify the entries 
+that where p1.id is less than p2.id and the emails are the same.
+
+
+Query: 
+
+DELETE p2.*
+FROM Person p1, Person p2
+WHERE p1.id < p2.id AND p1.email = p2.email
+
